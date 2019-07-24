@@ -26,12 +26,15 @@
                         <color key="backgroundColor" red="0.3411764706" green="0.85490196080000003" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="TUX-MP-U1W" firstAttribute="top" secondItem="RB8-te-vSr" secondAttribute="top" id="Kep-CU-NRf"/>
-                            <constraint firstItem="RB8-te-vSr" firstAttribute="bottom" secondItem="TUX-MP-U1W" secondAttribute="bottom" id="gt5-Sy-RVx"/>
+                            <constraint firstAttribute="bottom" secondItem="TUX-MP-U1W" secondAttribute="bottom" id="gt5-Sy-RVx"/>
                             <constraint firstItem="RB8-te-vSr" firstAttribute="trailing" secondItem="TUX-MP-U1W" secondAttribute="trailing" id="oFt-7Q-SNk"/>
                             <constraint firstItem="TUX-MP-U1W" firstAttribute="leading" secondItem="RB8-te-vSr" secondAttribute="leading" id="yYa-36-u3U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RB8-te-vSr"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="TUX-MP-U1W" id="TW2-WK-a3y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

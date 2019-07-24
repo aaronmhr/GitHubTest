@@ -17,6 +17,7 @@
 		1886CBB722E80594000B5DF9 /* ListProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CBAF22E80593000B5DF9 /* ListProtocols.swift */; };
 		1886CBB822E80594000B5DF9 /* ListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CBB122E80593000B5DF9 /* ListInteractor.swift */; };
 		1886CBB922E80594000B5DF9 /* ListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CBB322E80593000B5DF9 /* ListRouter.swift */; };
+		1886CBBC22E807DB000B5DF9 /* GitHubRepoCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CBBB22E807DB000B5DF9 /* GitHubRepoCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		1886CBAF22E80593000B5DF9 /* ListProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListProtocols.swift; sourceTree = "<group>"; };
 		1886CBB122E80593000B5DF9 /* ListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListInteractor.swift; sourceTree = "<group>"; };
 		1886CBB322E80593000B5DF9 /* ListRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRouter.swift; sourceTree = "<group>"; };
+		1886CBBB22E807DB000B5DF9 /* GitHubRepoCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepoCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 		1886CBAB22E80593000B5DF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1886CBBA22E807BE000B5DF9 /* Cells */,
 				1886CBAC22E80593000B5DF9 /* ListViewController.swift */,
 				1886CBAD22E80593000B5DF9 /* List.storyboard */,
 			);
@@ -154,6 +157,14 @@
 				1886CBB322E80593000B5DF9 /* ListRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		1886CBBA22E807BE000B5DF9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1886CBBB22E807DB000B5DF9 /* GitHubRepoCellModel.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1886CBB922E80594000B5DF9 /* ListRouter.swift in Sources */,
+				1886CBBC22E807DB000B5DF9 /* GitHubRepoCellModel.swift in Sources */,
 				1886CBB822E80594000B5DF9 /* ListInteractor.swift in Sources */,
 				1886CBB422E80594000B5DF9 /* ListPresenter.swift in Sources */,
 				1886CB8722E804ED000B5DF9 /* AppDelegate.swift in Sources */,
