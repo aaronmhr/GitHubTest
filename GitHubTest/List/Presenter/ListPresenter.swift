@@ -26,13 +26,14 @@ final class ListPresenter {
 extension ListPresenter: ListPresenterProtocol {
     func viewDidLoad() {
         view.navigationBarTitle = Constants.navBarTitle
-        view.githubRepos = [
-            GitHubRepoCellModel(name: "amazing iOS 1", fullName: "asdrt/amazingiOS 1"),
-            GitHubRepoCellModel(name: "amazing iOS 2", fullName: "asdrt/amazingiOS 2"),
-            GitHubRepoCellModel(name: "amazing iOS 3", fullName: "asdrt/amazingiOS 3"),
-            GitHubRepoCellModel(name: "amazing iOS 4", fullName: "asdrt/amazingiOS 4"),
-            GitHubRepoCellModel(name: "amazing iOS 5", fullName: "asdrt/amazingiOS 5")
-        ]
+        interactor.fetchGitHubRepos { [weak self] response in
+            switch response {
+            case .success(let repos):
+                self?.view.githubRepos = repos.map { GitHubRepoCellModel(name: $0.name, fullName: $0.fullName) }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func didSelectRowAtIndex(_ index: Int) {

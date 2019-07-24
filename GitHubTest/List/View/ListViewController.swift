@@ -14,7 +14,9 @@ final class ListViewController: UIViewController, ListViewProtocol {
 
     var githubRepos:[GitHubRepoCellModel] = [] {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     

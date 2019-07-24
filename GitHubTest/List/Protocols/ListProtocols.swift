@@ -7,6 +7,7 @@
 //
 
 protocol ListInteractorProtocol: class {
+    func fetchGitHubRepos(completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void)
 }
 
 protocol ListRouterProtocol: class {
