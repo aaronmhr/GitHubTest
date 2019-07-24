@@ -8,27 +8,32 @@
 
 import UIKit
 
-final class ListViewController: UIViewController {
+final class ListViewController: UIViewController, ListViewProtocol {
     var presenter: ListPresenterProtocol!
     @IBOutlet private var tableView: UITableView!
 
-    var githubRepos:[GitHubRepoCellModel] = [
-        GitHubRepoCellModel(name: "amazing iOS 1", fullName: "asdrt/amazingiOS 1"),
-        GitHubRepoCellModel(name: "amazing iOS 2", fullName: "asdrt/amazingiOS 2"),
-        GitHubRepoCellModel(name: "amazing iOS 3", fullName: "asdrt/amazingiOS 3"),
-        GitHubRepoCellModel(name: "amazing iOS 4", fullName: "asdrt/amazingiOS 4"),
-        GitHubRepoCellModel(name: "amazing iOS 5", fullName: "asdrt/amazingiOS 5")
-    ]
-    //    {
-    //        didSet {
-    //            tableView.reloadData()
-    //        }
-    //    }
+    var githubRepos:[GitHubRepoCellModel] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    var navigationBarTitle: String? {
+        didSet {
+            title = navigationBarTitle
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         tableView.delegate = self
         tableView.dataSource = self
+        presenter.viewDidLoad()
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
@@ -56,8 +61,4 @@ extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
-}
-
-extension ListViewController: ListViewProtocol {
-
 }

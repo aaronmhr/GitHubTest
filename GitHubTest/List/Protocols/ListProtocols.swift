@@ -13,7 +13,12 @@ protocol ListRouterProtocol: class {
 }
 
 protocol ListPresenterProtocol: class {
+    func viewDidLoad()
+    func didSelectRowAtIndex(_ index: Int)
+    func shouldLoadMoreRows()
 }
 
 protocol ListViewProtocol: class {
+    var navigationBarTitle: String? { get set }
+    var githubRepos:[GitHubRepoCellModel] { get set }
 }
