@@ -19,4 +19,10 @@ final class DetailContributorCell: UITableViewCell, NibReusable {
             contributorImage.downloadImageFromURLString(model.imageStringURL)
         }
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        contributorImage.image = nil
+        contributorName.text = nil
+    }
 }
