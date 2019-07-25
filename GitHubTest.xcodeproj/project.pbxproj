@@ -16,10 +16,10 @@
 		185A0EB922E968F100253BA5 /* Contributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185A0EB822E968F100253BA5 /* Contributor.swift */; };
 		185A0EBB22E9766400253BA5 /* DetailContributorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185A0EBA22E9766400253BA5 /* DetailContributorCell.swift */; };
 		185A0EBD22E9767F00253BA5 /* DetailContributorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 185A0EBC22E9767F00253BA5 /* DetailContributorCell.xib */; };
+		185A0EBF22E97E4000253BA5 /* EndpointsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185A0EBE22E97E4000253BA5 /* EndpointsTests.swift */; };
 		1886CB8722E804ED000B5DF9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CB8622E804ED000B5DF9 /* AppDelegate.swift */; };
 		1886CB8E22E804EE000B5DF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1886CB8D22E804EE000B5DF9 /* Assets.xcassets */; };
 		1886CB9122E804EE000B5DF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1886CB8F22E804EE000B5DF9 /* LaunchScreen.storyboard */; };
-		1886CB9C22E804EE000B5DF9 /* GitHubTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CB9B22E804EE000B5DF9 /* GitHubTestTests.swift */; };
 		1886CBB422E80594000B5DF9 /* ListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CBAA22E80593000B5DF9 /* ListPresenter.swift */; };
 		1886CBB522E80594000B5DF9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1886CBAC22E80593000B5DF9 /* ListViewController.swift */; };
 		1886CBB622E80594000B5DF9 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1886CBAD22E80593000B5DF9 /* List.storyboard */; };
@@ -63,13 +63,13 @@
 		185A0EB822E968F100253BA5 /* Contributor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contributor.swift; sourceTree = "<group>"; };
 		185A0EBA22E9766400253BA5 /* DetailContributorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContributorCell.swift; sourceTree = "<group>"; };
 		185A0EBC22E9767F00253BA5 /* DetailContributorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContributorCell.xib; sourceTree = "<group>"; };
+		185A0EBE22E97E4000253BA5 /* EndpointsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointsTests.swift; sourceTree = "<group>"; };
 		1886CB8322E804ED000B5DF9 /* GitHubTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHubTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1886CB8622E804ED000B5DF9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1886CB8D22E804EE000B5DF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1886CB9022E804EE000B5DF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1886CB9222E804EE000B5DF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1886CB9722E804EE000B5DF9 /* GitHubTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHubTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1886CB9B22E804EE000B5DF9 /* GitHubTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubTestTests.swift; sourceTree = "<group>"; };
 		1886CB9D22E804EE000B5DF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1886CBAA22E80593000B5DF9 /* ListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPresenter.swift; sourceTree = "<group>"; };
 		1886CBAC22E80593000B5DF9 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 		1886CB9A22E804EE000B5DF9 /* GitHubTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				1886CB9B22E804EE000B5DF9 /* GitHubTestTests.swift */,
 				1886CB9D22E804EE000B5DF9 /* Info.plist */,
+				185A0EBE22E97E4000253BA5 /* EndpointsTests.swift */,
 			);
 			path = GitHubTestTests;
 			sourceTree = "<group>";
@@ -417,6 +417,7 @@
 					};
 					1886CB9622E804EE000B5DF9 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 1886CB8222E804ED000B5DF9;
 					};
 				};
@@ -502,7 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1886CB9C22E804EE000B5DF9 /* GitHubTestTests.swift in Sources */,
+				185A0EBF22E97E4000253BA5 /* EndpointsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +686,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TXH9ALPT83;
 				INFOPLIST_FILE = GitHubTestTests/Info.plist;
@@ -695,6 +697,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = aaronmhr.GitHubTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GitHubTest.app/GitHubTest";
@@ -706,6 +709,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TXH9ALPT83;
 				INFOPLIST_FILE = GitHubTestTests/Info.plist;

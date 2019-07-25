@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import GitHubTest
 
 class EndpointsTests: XCTestCase {
 
@@ -18,16 +19,19 @@ class EndpointsTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testRepoEndpoints() {
+        // Given
+        let sut: Endpoints = Endpoints.repos
+        let queryItems = [
+            URLQueryItem(name: "q", value: "language:swift"),
+            URLQueryItem(name: "per_page", value: "25"),
+            URLQueryItem(name: "page", value: "\(1)")
+        ]
+        let expectedUrl = "https://api.github.com/search/repositories?q=language:swift&per_page=25&page=1"
+        // When
+        let urlString = sut.endpointUrl(with: queryItems)?.absoluteString
+        
+        // Then
+        XCTAssertEqual(expectedUrl, urlString, "Endpoing URL should contain query items")
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
