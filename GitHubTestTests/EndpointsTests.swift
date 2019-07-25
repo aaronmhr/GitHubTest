@@ -1,15 +1,14 @@
 //
-//  GitHubTestTests.swift
+//  EndpointsTests.swift
 //  GitHubTestTests
 //
-//  Created by Aaron Huánuco on 24/07/2019.
+//  Created by Aaron Huánuco on 25/07/2019.
 //  Copyright © 2019 Aaron Huánuco. All rights reserved.
 //
 
 import XCTest
-@testable import GitHubTest
 
-class GitHubTestTests: XCTestCase {
+class EndpointsTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
