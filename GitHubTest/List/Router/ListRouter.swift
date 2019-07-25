@@ -41,5 +41,8 @@ final class ListRouter {
 }
 
 extension ListRouter: ListRouterProtocol {
-
+    func showDetailViewForRepo(_ repoModel: GitHubRepoModel) {
+        let viewController = DetailRouter.assembleModule(repoModel: repoModel)
+        view.navigationController?.pushViewController(viewController, animated: true)
+    }
 }

@@ -17,6 +17,12 @@ final class ListInteractorDependencies: ListInteractorDependenciesProtocol {
 }
 
 final class ListInteractor {
+    
+    private enum Constants {
+        static let language = "language:swift"
+        static let results = "25"
+    }
+    
     let dependencies: ListInteractorDependenciesProtocol
 
     init(dependencies: ListInteractorDependenciesProtocol = ListInteractorDependencies()) {
@@ -25,14 +31,20 @@ final class ListInteractor {
 }
 
 extension ListInteractor: ListInteractorProtocol {
-    private var url: URL? {
-        guard let url = URL(string: Endpoints.swiftRepos.url) else {
-            return nil
+    func urlStringForRepos(page: UInt8) -> URL? {
+        let queryItems = [
+            URLQueryItem(name: "q", value: Constants.language),
+            URLQueryItem(name: "per_page", value: Constants.results),
+            URLQueryItem(name: "page", value: "\(page)")
+        ]
+        guard let stringURL = Endpoints.repos.endpointUrl(with: queryItems)?.absoluteString,
+            let url = URL(string: stringURL) else {
+                return nil
         }
         return url
     }
     
-    func fetchGitHubRepos(completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void) {
+    func fetchGitHubRepos(url: URL?, completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void) {
         guard let url = url else {
             return completion(.failure(APIServiceError.invalidEndpoint))
         }

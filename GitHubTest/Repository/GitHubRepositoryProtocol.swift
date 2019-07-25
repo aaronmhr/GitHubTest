@@ -11,4 +11,5 @@ import Foundation
 
 protocol GitHubRepositoryProtocol {
     func retrieveReposList(url: URL, completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void)
+    func retrieveContributorsList(url: URL, completion: @escaping (Result<[Contributor], APIServiceError>) -> Void)
 }

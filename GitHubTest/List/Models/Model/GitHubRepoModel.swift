@@ -11,4 +11,8 @@ import Foundation
 struct GitHubRepoModel {
     let name: String
     let fullName: String
+    let size: Int
+    let stargazersCount: Int
+    let forksCount: Int
+    let contributorsURL: String
 }

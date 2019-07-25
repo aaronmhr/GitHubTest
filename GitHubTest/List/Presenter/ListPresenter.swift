@@ -15,6 +15,13 @@ final class ListPresenter {
     let router: ListRouterProtocol
     let interactor: ListInteractorProtocol
     weak var view: ListViewProtocol!
+    
+    private var page: UInt8 = 1
+    private var rows: [GitHubRepoModel] = [] {
+        didSet {
+            view.githubRepos = rows.map { GitHubRepoCellModel(name: $0.name, fullName: $0.fullName) }
+        }
+    }
 
     init(withView view: ListViewProtocol, interactor: ListInteractorProtocol, router: ListRouterProtocol) {
         self.view = view
@@ -26,21 +33,32 @@ final class ListPresenter {
 extension ListPresenter: ListPresenterProtocol {
     func viewDidLoad() {
         view.navigationBarTitle = Constants.navBarTitle
-        interactor.fetchGitHubRepos { [weak self] response in
+        loadData()
+    }
+    
+    func didSelectRowAtIndex(_ index: Int) {
+        guard rows.indices.contains(index) else { return }
+        router.showDetailViewForRepo(rows[index])
+    }
+    
+    func loadData() {
+        view.addFullScreenLoadingView()
+        let url = interactor.urlStringForRepos(page: page)
+        interactor.fetchGitHubRepos(url: url) { [weak self] response in
+            self?.view.removeFullScreenLoadingView()
             switch response {
             case .success(let repos):
-                self?.view.githubRepos = repos.map { GitHubRepoCellModel(name: $0.name, fullName: $0.fullName) }
+                self?.rows += repos
+                self?.page += 1
             case .failure(let error):
                 print(error)
             }
         }
     }
     
-    func didSelectRowAtIndex(_ index: Int) {
-        
-    }
-    
-    func shouldLoadMoreRows() {
-        
+    func refreshTable() {
+        rows = []
+        page = 1
+        loadData()
     }
 }

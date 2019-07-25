@@ -8,10 +8,10 @@
 
 import UIKit
 
-final class ListViewController: UIViewController, ListViewProtocol {
+final class ListViewController: UIViewController {
     var presenter: ListPresenterProtocol!
     @IBOutlet private var tableView: UITableView!
-
+    private let refreshControl = UIRefreshControl()
     var githubRepos:[GitHubRepoCellModel] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -19,6 +19,13 @@ final class ListViewController: UIViewController, ListViewProtocol {
             }
         }
     }
+    
+    lazy var fullScreenView: UIView = {
+        let view = UIView(frame: UIScreen.main.bounds)
+        view.backgroundColor = .black
+        view.alpha = 0.3
+        return view
+    }()
     
     var navigationBarTitle: String? {
         didSet {
@@ -31,11 +38,34 @@ final class ListViewController: UIViewController, ListViewProtocol {
         setupNavigationBar()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         presenter.viewDidLoad()
+    }
+    
+    @objc private func refreshData() {
+        presenter.refreshTable()
+        refreshControl.endRefreshing()
     }
     
     private func setupNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
+    }
+}
+
+extension ListViewController: ListViewProtocol {
+    func addFullScreenLoadingView() {
+        DispatchQueue.main.async {
+            self.tableView.isUserInteractionEnabled = false
+            self.navigationController?.navigationBar.addSubview(self.fullScreenView)
+        }
+    }
+    
+    func removeFullScreenLoadingView() {
+        DispatchQueue.main.async {
+            self.tableView.isUserInteractionEnabled = true
+            self.fullScreenView.removeFromSuperview()
+        }
     }
 }
 
@@ -57,10 +87,13 @@ extension ListViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+        guard let lastRowIndex = githubRepos.indices.last else { return }
+        if indexPath.row == lastRowIndex {
+            presenter.loadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        presenter.didSelectRowAtIndex(indexPath.row)
     }
 }

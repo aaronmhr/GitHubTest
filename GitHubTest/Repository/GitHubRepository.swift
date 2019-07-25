@@ -39,4 +39,16 @@ final class GitHubRepository: GitHubRepositoryProtocol {
             }
         }
     }
+    
+    func retrieveContributorsList(url: URL, completion: @escaping (Result<[Contributor], APIServiceError>) -> Void) {
+        self.dependencies.apiService.fetchResources(url: url) { (result: Result<[ContributorResponse], APIServiceError>) in
+            switch result {
+            case .success(let response):
+                let reposArray = response.compactMap { $0.asContributor }
+                completion(.success(reposArray))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
