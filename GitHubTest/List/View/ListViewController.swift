@@ -44,7 +44,7 @@ final class ListViewController: UIViewController {
     }
     
     @objc private func refreshData() {
-        presenter.refreshTable()
+        presenter.pullToRefreshDidTrigger()
         refreshControl.endRefreshing()
     }
     
@@ -87,10 +87,7 @@ extension ListViewController: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension ListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let lastRowIndex = githubRepos.indices.last else { return }
-        if indexPath.row == lastRowIndex {
-            presenter.loadData()
-        }
+        presenter.willDisplayRowSAtIndex(indexPath.row)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

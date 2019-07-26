@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Contributor {
+struct Contributor: Equatable {
     let name: String
     let imageStringURL: String
 }

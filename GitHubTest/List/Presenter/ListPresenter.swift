@@ -17,7 +17,7 @@ final class ListPresenter {
     weak var view: ListViewProtocol!
     
     private var page: UInt8 = 1
-    private var rows: [GitHubRepoModel] = [] {
+    private(set) var rows: [GitHubRepoModel] = [] {
         didSet {
             view.githubRepos = rows.map { GitHubRepoCellModel(name: $0.name, fullName: $0.fullName) }
         }
@@ -32,6 +32,7 @@ final class ListPresenter {
 
 extension ListPresenter: ListPresenterProtocol {
     func viewDidLoad() {
+        guard rows.isEmpty else { return }
         view.navigationBarTitle = Constants.navBarTitle
         loadData()
     }
@@ -41,10 +42,23 @@ extension ListPresenter: ListPresenterProtocol {
         router.showDetailViewForRepo(rows[index])
     }
     
-    func loadData() {
+    func willDisplayRowSAtIndex(_ index: Int) {
+        guard let lastRowIndex = rows.indices.last,
+            index == lastRowIndex else { return }
+        loadData()
+    }
+    
+    func pullToRefreshDidTrigger() {
+        rows = []
+        page = 1
+        loadData()
+    }
+}
+
+extension ListPresenter {
+    private func loadData() {
         view.addFullScreenLoadingView()
-        let url = interactor.urlStringForRepos(page: page)
-        interactor.fetchGitHubRepos(url: url) { [weak self] response in
+        interactor.fetchGitHubRepos(page: page) { [weak self] response in
             self?.view.removeFullScreenLoadingView()
             switch response {
             case .success(let repos):
@@ -54,11 +68,5 @@ extension ListPresenter: ListPresenterProtocol {
                 print(error)
             }
         }
-    }
-    
-    func refreshTable() {
-        rows = []
-        page = 1
-        loadData()
     }
 }

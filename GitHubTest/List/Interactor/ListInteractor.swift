@@ -28,10 +28,8 @@ final class ListInteractor {
     init(dependencies: ListInteractorDependenciesProtocol = ListInteractorDependencies()) {
         self.dependencies = dependencies
     }
-}
-
-extension ListInteractor: ListInteractorProtocol {
-    func urlStringForRepos(page: UInt8) -> URL? {
+    
+    private func urlStringForRepos(page: UInt8) -> URL? {
         let queryItems = [
             URLQueryItem(name: "q", value: Constants.language),
             URLQueryItem(name: "per_page", value: Constants.results),
@@ -43,9 +41,11 @@ extension ListInteractor: ListInteractorProtocol {
         }
         return url
     }
-    
-    func fetchGitHubRepos(url: URL?, completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void) {
-        guard let url = url else {
+}
+
+extension ListInteractor: ListInteractorProtocol {
+    func fetchGitHubRepos(page: UInt8, completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void) {
+        guard let url = urlStringForRepos(page: page) else {
             return completion(.failure(APIServiceError.invalidEndpoint))
         }
         return dependencies.repository.retrieveReposList(url: url, completion: { response in

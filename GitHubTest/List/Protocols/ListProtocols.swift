@@ -9,8 +9,7 @@
 import UIKit
 
 protocol ListInteractorProtocol: class {
-    func fetchGitHubRepos(url: URL?, completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void)
-    func urlStringForRepos(page: UInt8) -> URL?
+    func fetchGitHubRepos(page: UInt8, completion: @escaping (Result<[GitHubRepoModel], APIServiceError>) -> Void)
 }
 
 protocol ListRouterProtocol: class {
@@ -20,8 +19,8 @@ protocol ListRouterProtocol: class {
 protocol ListPresenterProtocol: class {
     func viewDidLoad()
     func didSelectRowAtIndex(_ index: Int)
-    func loadData()
-    func refreshTable()
+    func willDisplayRowSAtIndex(_ index: Int)
+    func pullToRefreshDidTrigger()
 }
 
 protocol ListViewProtocol: Coverable {

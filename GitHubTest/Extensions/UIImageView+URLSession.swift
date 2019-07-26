@@ -9,18 +9,23 @@
 import UIKit
 
 extension UIImageView {
-    func downloadImageFromURLString(_ url: String) {
-        guard let url = URL(string: url) else { return }
+    func downloadImageFromURLString(_ url: String, completion: (() -> ())? = nil) {
+        guard let url = URL(string: url) else {
+            completion?()
+            return
+        }
         URLSession.shared.dataTask( with: url, completionHandler: {
             (data, response, error) -> Void in
             DispatchQueue.main.async {
                 self.contentMode =  .scaleAspectFit
                 self.layer.cornerRadius = 6.0
                 if let data = data {
-                    self.image = UIImage(data: data)
+                    let image = UIImage(data: data)
+                    self.image = image
                 } else {
-                    self.backgroundColor = #colorLiteral(red: 0.8936555982, green: 0.8943349719, blue: 0.8937607408, alpha: 1)
+                    self.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 }
+                completion?()
             }
         }).resume()
     }

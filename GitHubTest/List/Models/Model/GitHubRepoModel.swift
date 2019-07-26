@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct GitHubRepoModel {
+struct GitHubRepoModel: Equatable {
     let name: String
     let fullName: String
     let size: Int
